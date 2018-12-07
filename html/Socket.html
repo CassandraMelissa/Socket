@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js'></script>
+
+	<script type='text/javascript'>
+    var socket = io('http://localhost:3000', {path: '/socket.io'}); // connect to server
+    socket.on('fromServer', function(data) { // listen for fromServer message
+	   console.log('Received from server: ' + data.id);
+	   socket.emit('fromClient', {id: 'Me Too'}); // send fromClient message to server
+	});
+	socket.on('serverReply', function(data){//listen for servers reply
+		console.log('Recieved reply from server: ' + data.id);
+		socket.emit('clientReply', {id: 'LOLLLLL!!!!!'});//send server clients reply
+	});
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
